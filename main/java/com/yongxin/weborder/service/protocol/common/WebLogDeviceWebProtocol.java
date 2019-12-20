@@ -5,7 +5,7 @@ import com.yongxin.weborder.common.bean.Pair;
 import com.yongxin.weborder.common.exception.ProtocolException;
 import com.yongxin.weborder.common.utils.ObjectUtil;
 import com.yongxin.weborder.service.protocol.AbstractWebProtocol;
-import com.yongxin.weborder.service.task.CookieUrlTask;
+import com.yongxin.weborder.service.schedule.CookieUrlSchedule;
 import com.yongxin.weborder.utils.OrderHttpClient;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class WebLogDeviceWebProtocol extends AbstractWebProtocol
     public Map<Integer, Object> service() throws ProtocolException
     {
         Map<Integer,Object> returnMap = new HashMap<>();
-        String url = CookieUrlTask.cookieUrl;
+        String url = CookieUrlSchedule.cookieUrl;
         if (ObjectUtil.isNull(url))
         {
             throw new ProtocolException(ResultEnum.NO_COOKIE_URL);

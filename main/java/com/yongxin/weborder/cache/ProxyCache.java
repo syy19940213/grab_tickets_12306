@@ -13,15 +13,7 @@ public class ProxyCache
 {
 
     private static Logger logger = LoggerFactory.getLogger(ProxyCache.class);
-    /**
-     * 最大爬去代理数
-     */
-    private static int MAX_SIZE = 1000;
 
-    /**
-     * 爬取到的代理
-     */
-    private static Set<HttpProxy> proxyList = new ConcurrentHashSet<>();
 
     /**
      * 可用代理
@@ -29,20 +21,6 @@ public class ProxyCache
     private static List<HttpProxy> usableProxy = new ArrayList<>();
 
 
-
-    public static Set<HttpProxy> getProxy()
-    {
-        return proxyList;
-    }
-
-    public static void addProxy(HttpProxy httpProxy)
-    {
-        if (proxyList.size() > MAX_SIZE)
-        {
-            proxyList.remove(0);
-        }
-        proxyList.add(httpProxy);
-    }
 
 
     public static void setUsableProxy(List<HttpProxy> proxy)
@@ -81,5 +59,6 @@ public class ProxyCache
     public synchronized static void removeUsable(HttpProxy httpProxy)
     {
         usableProxy.remove(httpProxy);
+        logger.info("当前可用代理数:" + usableProxy.size());
     }
 }

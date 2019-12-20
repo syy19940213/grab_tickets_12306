@@ -1,4 +1,4 @@
-package com.yongxin.weborder.service.task;
+package com.yongxin.weborder.service.schedule;
 
 import com.yongxin.weborder.service.proxy.ProxyService;
 import com.yongxin.weborder.utils.TrainUtils;
@@ -11,18 +11,17 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class GetProxyTask
+public class GetProxySchedule
 {
 
-    private Logger logger = LoggerFactory.getLogger(GetProxyTask.class);
+    private Logger logger = LoggerFactory.getLogger(GetProxySchedule.class);
 
 
 
     @Autowired
     private ProxyService proxyService;
 
-
-    @Scheduled(fixedDelay= 5 * 1000)
+    @Scheduled(fixedDelay= 5 * 60 * 1000)
     public void getProxyIp()
     {
         if (!TrainUtils.isTime12306())

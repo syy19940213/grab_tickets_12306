@@ -1,4 +1,4 @@
-package com.yongxin.weborder.service.task;
+package com.yongxin.weborder.service.schedule;
 
 import com.yongxin.weborder.common.utils.ObjectUtil;
 import com.yongxin.weborder.service.impl.GetJsCookieService;
@@ -13,10 +13,10 @@ import org.springframework.stereotype.Component;
  * 获取cookie 要用的url
  */
 @Component
-public class CookieUrlTask
+public class CookieUrlSchedule
 {
 
-    private Logger logger = LoggerFactory.getLogger(CookieUrlTask.class);
+    private Logger logger = LoggerFactory.getLogger(CookieUrlSchedule.class);
 
     public static String cookieUrl = null;
 
@@ -41,7 +41,7 @@ public class CookieUrlTask
                 if (ObjectUtil.isNotNull(url))
                 {
                     logger.info("获取到cookieUrl:" + url);
-                    CookieUrlTask.cookieUrl = url;
+                    CookieUrlSchedule.cookieUrl = url;
                     endTime = System.currentTimeMillis();
                 }
             }
