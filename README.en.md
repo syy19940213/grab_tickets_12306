@@ -1,7 +1,7 @@
 # 12306抢票
 
 #### Description
-12306抢票，供学习交流，qq群号：983658859
+{**When you're done, you can delete the content in this README and update the file with details for others getting started with your repository**}
 
 #### Software Architecture
 Software architecture description
