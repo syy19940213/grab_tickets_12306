@@ -7,7 +7,9 @@ import com.yongxin.weborder.bean.BuyTicket;
 import com.yongxin.weborder.cache.ProxyCache;
 import com.yongxin.weborder.common.exception.ProtocolException;
 import com.yongxin.weborder.common.utils.ObjectUtil;
+import com.yongxin.weborder.service.MailNoticeService;
 import com.yongxin.weborder.service.Protocol;
+import com.yongxin.weborder.service.impl.MailNoticeServiceImpl;
 import com.yongxin.weborder.utils.TrainUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +35,9 @@ public class TicketsQueryTask
 
     @Autowired
     private Protocol protocol;
+
+    @Autowired
+    private MailNoticeService mailNoticeService;
 
 
     @Async("leftTicketsThreadPool")
@@ -96,6 +101,7 @@ public class TicketsQueryTask
                                     // 去买票
                                     this.buyTicketsTask.buyTickets(buyTicket);
                                     logger.info("发现余票去买票：{} - {}",buyTicket.getTrainNo(),buyTicket.getSeatName());
+                                    mailNoticeService.sendLeftTicketsNotice(buyTicket);
                                     return;
                                 }
                             }

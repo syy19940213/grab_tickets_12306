@@ -56,4 +56,8 @@ public class BuyTicket
     // 12306账号
     private String account12306;
     private String password12306;
+
+
+    // 邮箱提醒
+    private String email;
 }

@@ -276,9 +276,9 @@ public class OrderHttpClient
     private RequestConfig getRequestConfig()
     {
         RequestConfig.Builder requestBuilder = RequestConfig.custom()
-                .setConnectTimeout(3 * 1000)
-                .setSocketTimeout(3 * 1000)
-                .setConnectionRequestTimeout(3 * 1000);
+                .setConnectTimeout(5 * 1000)
+                .setSocketTimeout(5 * 1000)
+                .setConnectionRequestTimeout(5 * 1000);
         return requestBuilder.build();
     }
 
