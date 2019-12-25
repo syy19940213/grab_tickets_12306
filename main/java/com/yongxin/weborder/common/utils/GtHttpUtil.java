@@ -18,7 +18,7 @@ public class GtHttpUtil
 {
     public static DefaultHttpClient initClient() throws Exception
     {
-        return initClientWithOutTime(3, 3);
+        return initClientWithOutTime(5, 5);
     }
 
     /**
@@ -49,7 +49,7 @@ public class GtHttpUtil
         tcc.setMaxTotal(1000 * 1000);
 
         DefaultHttpClient client = new DefaultHttpClient(tcc, localBasicHttpParams);
-        client.getConnectionManager().closeIdleConnections(5 * 1000, TimeUnit.MILLISECONDS);
+        client.getConnectionManager().closeIdleConnections(10 * 1000, TimeUnit.MILLISECONDS);
         client.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT, connTimeOut * 1000);
         client.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT, soTimeOut * 1000);
         client.getParams().setParameter("http.protocol.cookie-policy", CookiePolicy.BROWSER_COMPATIBILITY);

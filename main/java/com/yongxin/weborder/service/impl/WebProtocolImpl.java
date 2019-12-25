@@ -111,24 +111,36 @@ public class WebProtocolImpl implements Protocol
         zuobiao.put(7,"198,121");
         zuobiao.put(8,"268,118");
         StringBuffer strBuffer = new StringBuffer();
-        try
+        int times = 0;
+        while (times < 3)
         {
-            OrderHttpClient client = new OrderHttpClient();
-            client.addHeader("Content-Type","application/x-www-form-urlencoded");
-            client.addParam("imageFile",image);
-            Pair<Integer,String> pairResult = client.doPostByForm(this.autoCaptchaUrl);
-            JSONObject json = JSONObject.parseObject(pairResult.right);
-            JSONArray array = json.getJSONArray("data");
-            for (int i = 0 ; i < array.size() ; i++)
+            try
             {
-                int dd = array.getInteger(i);
-                String zuo = zuobiao.get(dd);
-                strBuffer.append(zuo).append(",");
+                OrderHttpClient client = new OrderHttpClient();
+                client.addHeader("Content-Type","application/x-www-form-urlencoded");
+                client.addParam("imageFile",image);
+                Pair<Integer,String> pairResult = client.doPostByForm(this.autoCaptchaUrl);
+                JSONObject json = JSONObject.parseObject(pairResult.right);
+                JSONArray array = json.getJSONArray("data");
+                for (int i = 0 ; i < array.size() ; i++)
+                {
+                    int dd = array.getInteger(i);
+                    String zuo = zuobiao.get(dd);
+                    strBuffer.append(zuo).append(",");
+                }
+                if (ObjectUtil.isNotNull(strBuffer.toString()))
+                {
+                    break;
+                }
             }
+            catch (Exception e)
+            {
+                logger.error("获取验证码结果出错重新获取");
+            }
+            times++;
         }
-        catch (Exception e)
+        if(ObjectUtil.isNull(strBuffer.toString()))
         {
-            logger.error("获取验证码结果出错",e);
             throw new ProtocolException(ResultEnum.PASSCODE_ERROR);
         }
         return strBuffer.toString();

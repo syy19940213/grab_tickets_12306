@@ -53,6 +53,7 @@ public enum ResultEnum
      */
     PASSWORD_ERROR(9000,"密码输入错误"),
     CONFIRMQUEUE_ERROR(9001,"提交订单失败"),
+    NO_PASSENGERS(9002,"没有查询到乘车人"),
 
 
 

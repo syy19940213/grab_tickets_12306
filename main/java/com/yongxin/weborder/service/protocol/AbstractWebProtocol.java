@@ -82,6 +82,7 @@ public abstract class AbstractWebProtocol
         {
             throw new ProtocolException(ResultEnum.NETWORK_ERROR);
         }
+        logger.info("协议执行返回结果{},{},{}",this.getClass().getName(),result.left,result.right);
         return result;
     }
 
